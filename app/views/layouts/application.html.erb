@@ -1,14 +1,25 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-  <title>ProjectPage</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<title> Sample app </title>
+	<%= csrf_meta_tags %>
+	<%= render 'layouts/stylesheets' %>
 
-<%= yield %>
+</head>	
+
+<body>
+	<div class="container">
+		<%= render 'layouts/header' %>
+		<section class="round">
+			<%= yield%>
+		</section>
+		<%= render 'layouts/footer' %>
+	</div>
 
 </body>
+
 </html>
+
+
+

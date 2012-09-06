@@ -1,4 +1,15 @@
 ProjectPage::Application.routes.draw do
+  
+  match "/pages/home", :to=>'pages#home'
+  match "/pages/profile", :to=>'pages#profile'
+  match "/pages/cyprus_uni", :to=>'pages#cyprus_uni'
+  match "/pages/one_db_project", :to=>'pages#one_db_project'
+  match "/pages/photo_gallery", :to=>'pages#photo_gallery'
+  match "/pages/notepad", :to=>'pages#notepad'
+  match "/pages/about_us", :to=>'pages#about_us'
+  match "/pages/contact_us", :to=>'pages#contact_us'
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
