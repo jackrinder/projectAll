@@ -62,5 +62,13 @@ describe "Pages" do
       page.should have_content('Contact Us')
     end
   end
+  
+  describe "Demo" do
+    it "should have the content 'Demo' " do
+    visit '/pages/demo'
+    page.should have_content("Demo")
+    end
+  end
+  
 
 end

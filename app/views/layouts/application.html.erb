@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title> Sample app </title>
+	<title> <%=  title %> </title>
 	<%= csrf_meta_tags %>
 	<%= render 'layouts/stylesheets' %>
 
@@ -11,7 +11,7 @@
 <body>
 	<div class="container">
 		<%= render 'layouts/header' %>
-		<section class="round">
+		<section class="round main_content">
 			<%= yield%>
 		</section>
 		<%= render 'layouts/footer' %>

@@ -8,6 +8,7 @@ ProjectPage::Application.routes.draw do
   match "/pages/notepad", :to=>'pages#notepad'
   match "/pages/about_us", :to=>'pages#about_us'
   match "/pages/contact_us", :to=>'pages#contact_us'
+  match "/pages/demo", :to=>'pages#demo'
   
   
   # The priority is based upon order of creation:
