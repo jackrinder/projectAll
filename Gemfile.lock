@@ -159,7 +159,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (= 2.0.0)
   capybara
-  coffee-rails (~> 3.2.1)
+  coffee-rails (~> 3.2.2)
   guard-rspec
   guard-spork
   jquery-rails
@@ -171,4 +171,4 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   spork
   thin
-  uglifier (>= 1.0.3)
+  uglifier (>= 1.2.3)
