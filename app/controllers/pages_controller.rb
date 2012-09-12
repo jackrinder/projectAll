@@ -35,7 +35,7 @@ class PagesController < ApplicationController
   end
   
   def demo
-    @title="Demo"
+    @title="Asshole"
   end
   
 end

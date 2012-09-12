@@ -2,20 +2,20 @@
 
 <html>
 <head>
-	<title> <%=  title %> </title>
+	<title> Combining Project page | <%=  yield(:title) %> </title>
 	<%= csrf_meta_tags %>
 	<%= render 'layouts/stylesheets' %>
 
 </head>	
 
 <body>
+
+	<%= render 'layouts/header' %>
 	<div class="container">
-		<%= render 'layouts/header' %>
-		<section class="round main_content">
-			<%= yield%>
-		</section>
-		<%= render 'layouts/footer' %>
+		<%= yield%>
 	</div>
+	<%= render 'layouts/footer' %>
+
 
 </body>
 

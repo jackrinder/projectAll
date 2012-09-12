@@ -1,8 +1,8 @@
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<%= stylesheet_link_tag    "blueprint/screen", :media => "screen" %>
-<%= stylesheet_link_tag    "blueprint/print", :media => "print" %> 
+<!-- The only reference needed for stylesheets is application, for it is a manifest -->
+<!-- file which will include all stylesheets files in assets directory into one optimized file-->
+<%= stylesheet_link_tag    "application", :media => "all" %>
 <%= javascript_include_tag "application" %>
-<%= stylesheet_link_tag    "custom"%>
 <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->

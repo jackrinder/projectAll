@@ -1,74 +1,75 @@
 require 'spec_helper'
+require 'support/utilities'
+
 
 
 
 describe "Pages" do
  
-
-
+  subject {page}
+  
   describe "Home" do
-    it "should have the content 'Home' " do
-      visit '/pages/home'
-      page.should have_content('Home')
+    before { visit root_path}
+      # before(:each) είναι συνώνυμο
+      
+        it { should have_selector('h1', :text=>'Home') }
+        it { should have_selector('title', :text=> full_title('Home'))}
     end
-  end
+    
+    
 
-  describe "Profile" do
-    it "should have the content 'Profile'" do
-      visit '/pages/profile'
-      page.should have_content('Profile')
+    describe "Profile" do
+      before {visit profile_path}
+      
+      it {should have_selector('h1', :text=>'Profile') }
     end
-  end
-
-  describe "Cyprus-Uni" do
-    it "should have the content 'Cyprus-Uni' " do
-      visit '/pages/cyprus_uni'
-      page.should have_content('Cyprus-Uni')
+ 
+ 
+    describe "Cyprus-Uni" do
+      before { visit cyprus_uni_path }   
+          
+      it {should have_selector('h1', :text=>'Cyprus-Uni') }
     end
-  end
-
-  describe "One-DB project" do
-    it "should have the content 'One-DB project' " do
-      visit '/pages/one_db_project'
-      page.should have_content('One-DB project')
+ 
+    describe "One-DB project" do
+      before{ visit one_db_project_path } 
+             
+      it { should have_selector('h1', :text=>'One-DB project') }
     end
-  end
-
-  describe "Photo-Gallery" do
-    it "should have the content 'Photo-Gallery' " do
-      visit '/pages/photo_gallery'
-      page.should have_content('Photo-Gallery')
+ 
+    describe "Photo-Gallery" do
+      before { visit photo_gallery_path }
+      
+      it { should have_selector('h1', :text=>'Photo-Gallery') }
     end
-  end
-
-  describe "Notepad" do
-    it "should have the content 'Notepad'" do
-      visit '/pages/notepad'
-      page.should have_content('Notepad')
+ 
+    describe "Notepad" do
+      before { visit notepad_path }
+      
+      it { should have_selector('h1', :text=>'Notepad') }
     end
-  end
-
-  describe "About Us" do
-    it "should have the content 'About Us" do
-      visit '/pages/about_us'
-      page.should have_content('About Us')
-    end
-  end
-
-
-  describe "Contact Us" do
-    it "should have the content 'Contact Us" do
-      visit '/pages/contact_us'
-      page.should have_content('Contact Us')
-    end
-  end
   
-  describe "Demo" do
-    it "should have the content 'Demo' " do
-    visit '/pages/demo'
-    page.should have_content("Demo")
+    describe "About Us" do
+      before {visit about_us_path}
+      
+      it {should have_selector('h1', :text=>'About Us')}
     end
-  end
+ 
   
-
-end
+    describe "Contact Us" do
+        before {visit contact_us_path}
+        
+        it {should have_selector('h1', :text=>'Contact Us')}
+      
+    end
+   
+    describe "Demo" do
+      before {visit demo_path}
+      
+      it {should have_selector('h1', :text=>"Demo")}
+    end
+    
+    
+  
+ end
+ 

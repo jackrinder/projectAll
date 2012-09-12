@@ -12,7 +12,7 @@
 /* = General Styles = */
 /* ================== */
 .container {
-	width:710px;
+	width:800px;
 /*	height:500px;*/
 }
 
@@ -141,7 +141,7 @@ footer {
 	bottom: 100px;*/
 	text-align:center;
 	margin-top:10px;
-	width:710px;
+	width:800px;
 	margin-left:auto;
 	margin-right:auto;
 }

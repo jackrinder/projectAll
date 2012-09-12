@@ -1,26 +1,35 @@
-<header>
-	<%= image_tag("myWebpage.png", :alt=>"MyWebpage", :class=>"round") %>
-	<nav class="round">
-		<ul>
-			<li>
-				<%= link_to "Home", "/pages/home" %>
-			</li>
-			<li>
-				<%= link_to "Profile", "/pages/profile" %>
-			</li>
-			<li>
-				<%= link_to "Cyprus-Uni", "/pages/cyprus_uni" %>
-			</li>
-			<li>
-				<%= link_to "One-DB project", "/pages/one_db_project" %>
-			</li>
-			<li>
-				<%= link_to "Photo-Gallery", "/pages/photo_gallery" %>
-			</li>
-			<li>
-				<%= link_to "Notepad", "/pages/notepad" %>
-			</li>
-		</ul>
-	</nav>
-	
+<header class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+
+
+<!-- Always use named routes instead of hardcoded so that you can change the url in one place only -->
+			<%= link_to "Project Page",root_path , :id=>"logo" %>
+			<nav>
+				<ul class="nav pull-right">
+					<li>
+						<%= link_to "Home", root_path %>
+					</li>
+					<li>
+						<%= link_to "Profile", profile_path %>
+					</li>
+					<li>
+						<%= link_to "Cyprus-Uni", cyprus_uni_path %>
+					</li>
+					<li>
+						<%= link_to "One-DB project", one_db_project_path %>
+					</li>
+					<li>
+						<%= link_to "Photo-Gallery", photo_gallery_path %>
+					</li>
+					<li>
+						<%= link_to "Notepad", notepad_path %>
+					</li>
+					<li>
+						<%= link_to "Demo", demo_path %>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
 </header>

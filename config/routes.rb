@@ -1,14 +1,29 @@
 ProjectPage::Application.routes.draw do
   
-  match "/pages/home", :to=>'pages#home'
-  match "/pages/profile", :to=>'pages#profile'
-  match "/pages/cyprus_uni", :to=>'pages#cyprus_uni'
-  match "/pages/one_db_project", :to=>'pages#one_db_project'
-  match "/pages/photo_gallery", :to=>'pages#photo_gallery'
-  match "/pages/notepad", :to=>'pages#notepad'
-  match "/pages/about_us", :to=>'pages#about_us'
-  match "/pages/contact_us", :to=>'pages#contact_us'
-  match "/pages/demo", :to=>'pages#demo'
+  
+
+  # matches the page localhost:3000/profile to the controller's action pages's profile.
+  # It also gives a named route profile_path and profile_url. 
+  # root uses a special syntax. It gives root_path  -> '/'. We must delete public/index.html also.
+  
+  # Always use named routes instead of hardcoded so that you can change the url in one place only
+  
+  
+  root :to=>'pages#home'
+  
+  # το named route για το /users/new ειναι users_new_path
+  # αν θέλω να είναι στο url σκέτο localhost:3000/new_user
+  # το αλλάζω απο εδώ
+  # match "/new_user", :to=> 'users#new'
+  match "/sign_up", :to=>'users#new'
+  match "/profile", :to=>'pages#profile'
+  match "/cyprus_uni", :to=>'pages#cyprus_uni'
+  match "/one_db_project", :to=>'pages#one_db_project'
+  match "/photo_gallery", :to=>'pages#photo_gallery'
+  match "/notepad", :to=>'pages#notepad'
+  match "/about_us", :to=>'pages#about_us'
+  match "/contact_us", :to=>'pages#contact_us'
+  match "/demo", :to=>'pages#demo'
   
   
   # The priority is based upon order of creation:
