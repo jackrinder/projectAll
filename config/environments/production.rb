@@ -15,7 +15,7 @@ ProjectPage::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.precompile << /^((.*?)\/)?(?!_)[^\/]*$/
+  # config.assets.precompile += %w[ bootstrap/*.css bootstrap/*.js ]
   config.assets.compile = true
 
   # Generate digests for assets URLs
