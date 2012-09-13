@@ -26,11 +26,13 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'guard-rspec'
-  gem 'capybara'
-  gem 'rb-fsevent',:require=>false
   gem 'spork'
+  gem 'capybara'
+  gem 'guard-rspec'
   gem 'guard-spork'
+  gem 'rb-fsevent',:require=>false
+  
+  
 end
 
 
