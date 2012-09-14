@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 gem 'bootstrap-sass', '2.0.0'
 gem 'thin'
+gem 'bcrypt-ruby', '3.0.1'
 
 
 # Bundle edge Rails instead:
@@ -31,6 +32,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'rb-fsevent',:require=>false
+  gem 'annotate', '~>2.4.1.beta'
   
   
 end
