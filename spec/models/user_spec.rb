@@ -132,13 +132,36 @@ describe User do
       
       
       describe "when upcase email address is already taken" do
+        #saves the user_with_same_email containing upcase chars 
+        # and then ask if the @user is valid
         before do
           user_with_same_email=@user.dup
           user_with_same_email.email=@user.email.upcase
           user_with_same_email.save
         end
-
+        
         it { should_not be_valid }
+      end
+      
+      
+      
+      describe "when registering email containing mixed cap chars" do 
+        #
+        before {
+          address="user@ExAmpLE.COm"
+          
+          # user_for_taken_mixed_cap_email=@user.dup
+          #           user_for_taken_mixed_cap_email.email=address
+          #           user_for_taken_mixed_cap_email.save
+          be_the_same_with_downcase_email=@user.dup
+                             be_the_same_with_downcase_email.email=address
+                             be_the_same_with_downcase_email.save
+        }
+        
+        describe "should be the same as with downcase email" do
+          it { should be_invalid }
+          # specify { user_for_taken_mixed_cap_email.should be_invalid }
+        end
       end
       
       

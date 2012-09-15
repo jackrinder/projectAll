@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
   validates :name, :presence=>true, :length=> {:maximum=>50}
   # constants are indicated in ruby by a name starting with a capital letter
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, :presence=>true, :format=>{ :with=>VALID_EMAIL_REGEX}, 
+  validates :email, :presence=>true, :format=>{ :with=>VALID_EMAIL_REGEX},
+            # :uniqueness=>true
             :uniqueness=>{:case_sensitive=>false}
             
   validates :password, :presence=>true, :length=>{ :minimum=>6}
