@@ -8,6 +8,7 @@ ProjectPage::Application.routes.draw do
   
   # Always use named routes instead of hardcoded so that you can change the url in one place only
   
+  resources :users
   
   root :to=>'pages#home'
   

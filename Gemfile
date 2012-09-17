@@ -33,6 +33,7 @@ group :development, :test do
   gem 'guard-spork'
   gem 'rb-fsevent',:require=>false
   gem 'annotate', '~>2.4.1.beta'
+  gem 'factory_girl_rails', '1.4.0'
   
   
 end
