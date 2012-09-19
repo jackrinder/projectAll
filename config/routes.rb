@@ -9,6 +9,7 @@ ProjectPage::Application.routes.draw do
   # Always use named routes instead of hardcoded so that you can change the url in one place only
   
   resources :users
+  resources :sessions, :only=>[:new, :create, :destroy]
   
   root :to=>'pages#home'
   
@@ -16,6 +17,9 @@ ProjectPage::Application.routes.draw do
   # αν θέλω να είναι στο url σκέτο localhost:3000/new_user
   # το αλλάζω απο εδώ
   # match "/new_user", :to=> 'users#new'
+  match "/signin", :to=>'sessions#new'
+  match '/signout', :to=>'sessions#destroy', :via=>:delete
+  
   match "/sign_up", :to=>'users#new'
   match "/profile", :to=>'pages#profile'
   match "/cyprus_uni", :to=>'pages#cyprus_uni'

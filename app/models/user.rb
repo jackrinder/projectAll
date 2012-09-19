@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password_confirmation, :password
   has_secure_password
   before_save { |user| user.email=email.downcase }
+  before_save :create_remember_token
   
   validates :name, :presence=>true, :length=> {:maximum=>50}
   # constants are indicated in ruby by a name starting with a capital letter
@@ -24,6 +25,17 @@ class User < ActiveRecord::Base
             
   validates :password, :presence=>true, :length=>{ :minimum=>6}
   validates :password_confirmation, :presence=>true
+  
+  
+  # must be private
+  private
+    def create_remember_token
+      # self is needed in order Active record to understand that it is Active Record attribute and
+      # not a local variable.
+      self.remember_token=SecureRandom.hex
+    end
+  
+  
             
             
   #Uniqueness of an email in db is enforced in three ways.

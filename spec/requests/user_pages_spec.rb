@@ -31,7 +31,23 @@ describe "User pages" do
         expect { click_button submit }.to change(User, :count) .by(1)
       end
     end
+    
+    describe "with invalid information" do 
+      let(:invalid_user) {FactoryGirl.create(:invalid_user)}
+      
+      describe "after submission" do 
+        before {click_button submit}
+        it {should have_selector("title", :text=>"Sign up")}
+        it {should have_content("error")}
+      end
+    end
+    
+      
+      
+      
   end
+  
+  
 
   describe "profile page" do
     #code to make a user variable
