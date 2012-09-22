@@ -11,6 +11,8 @@
 
 class User < ActiveRecord::Base
   
+  #attr_accessible is EXTREMELY IMPORTANT because without that
+  #every attribute of User is by default accessible
   attr_accessible :email, :name, :password_confirmation, :password
   has_secure_password
   before_save { |user| user.email=email.downcase }

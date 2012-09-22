@@ -9,9 +9,10 @@ class SessionsController < ApplicationController
     user=User.find_by_email(params[:email])
     # if user && user.authenticate(params[:session][:password])
     if user && user.authenticate(params[:password])
-      flash[:success]="Welcome back#{user.name}"
+      flash[:success]="Welcome back #{user.name}"
+      
       sign_in(user)
-      redirect_to user_path(user.id)
+      redirect_back_or root_path
     else
       # create an error message and re-render the sign in form
       flash.now[:error]="Invalid email/password confirmation"
@@ -30,3 +31,5 @@ class SessionsController < ApplicationController
   end
   
 end
+
+

@@ -1,6 +1,9 @@
 <% provide(:title,'Home') %>
 <div class="center hero-unit"><h1>Home</h1>
-<h2>This is a homepage of thlias, useful in testing projects 
-<a href="http://google.gr"></a></h2>
+<h2>This is a homepage made by thlias useful in testing projects.<br />
+	
+	To access the advanced features of this website, you must be a
+	privileged user.  <br /> To become one, fill in this <a href=<%= url_for(new_user_path) %>> form</a> 
+</h2>
 </div>
 <%= link_to image_tag("rails.png", :alt=>"Rails"), 'http://rubyonrails.org/' %>
