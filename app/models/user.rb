@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   #every attribute of User is by default accessible
   attr_accessible :email, :name, :password_confirmation, :password
   has_secure_password
+  # The option =>destroy means that when a user is destroyed 
+  # his posts are destroyed also
+  has_many :microposts, :dependent=>:destroy
+  
   before_save { |user| user.email=email.downcase }
   before_save :create_remember_token
   
@@ -28,6 +32,12 @@ class User < ActiveRecord::Base
   validates :password, :presence=>true, :length=>{ :minimum=>6}
   validates :password_confirmation, :presence=>true
   
+  def feed
+    #this is preliminary. See "Following users" for the full implementation
+    # Issues an SQL command to return an array of microposts which all share the same user_id
+    # if parameter has to do with defending against a security hole called SQL injection
+    Micropost.where("user_id=?", id)
+  end
   
   # must be private
   private

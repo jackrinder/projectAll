@@ -2,6 +2,10 @@ class PagesController < ApplicationController
   
   def home
     @title="Home"
+    #Both corrected with 'if signed_in?' because if unsigned there are no micropost
+    #or feed_items which means no method error for feed and micropost
+    @micropost=current_user.microposts.build if signed_in?
+    @feed_items=current_user.feed.paginate(:page=> params[:page]) if signed_in?
   end
   
   def profile

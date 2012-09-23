@@ -32,6 +32,8 @@ class UsersController < ApplicationController
     #use params because these are controller actions issued by an URI like /users/:id 
     #at another part of the program
     @user=User.find(params[:id])
+    # What's important to note down that there is no controlle for microposts
+    @microposts=@user.microposts.paginate(:page=>params[:page])
   end
   
   def edit
@@ -69,12 +71,7 @@ class UsersController < ApplicationController
   end
   
   private
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_path, :notice=>"Please sign in" 
-      end
-    end
+    
     
     def correct_user
       @user=User.find(params[:id])
