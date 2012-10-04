@@ -8,6 +8,8 @@ ProjectPage::Application.routes.draw do
   
   # Always use named routes instead of hardcoded so that you can change the url in one place only
   
+  resources :galleries, :singular=>"gallery"
+  resources :photos
   resources :users
   resources :sessions, :only=>[:new, :create, :destroy]
   resources :microposts, :only=>[:create, :destroy]
@@ -25,7 +27,7 @@ ProjectPage::Application.routes.draw do
   match "/profile", :to=>'pages#profile'
   match "/cyprus_uni", :to=>'pages#cyprus_uni'
   match "/one_db_project", :to=>'pages#one_db_project'
-  match "/photo_gallery", :to=>'pages#photo_gallery'
+  match "/photo_gallery", :to=>'galleries#index'
   match "/notepad", :to=>'pages#notepad'
   match "/about_us", :to=>'pages#about_us'
   match "/contact_us", :to=>'pages#contact_us'

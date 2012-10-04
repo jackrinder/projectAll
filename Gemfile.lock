@@ -43,6 +43,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carrierwave (0.6.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
     coffee-rails (3.2.2)
@@ -119,6 +122,7 @@ GEM
     rb-fsevent (0.9.1)
     rdoc (3.12)
       json (~> 1.4)
+    rmagick (2.13.1)
     rspec (2.11.0)
       rspec-core (~> 2.11.0)
       rspec-expectations (~> 2.11.0)
@@ -174,6 +178,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.0.0)
   bootstrap-will_paginate (= 0.0.6)
   capybara
+  carrierwave
   coffee-rails (~> 3.2.2)
   factory_girl_rails (= 1.4.0)
   faker (= 1.0.1)
@@ -184,6 +189,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.3)
   rb-fsevent
+  rmagick
   rspec-rails
   sass-rails (~> 3.2.3)
   spork

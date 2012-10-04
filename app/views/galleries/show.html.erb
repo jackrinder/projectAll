@@ -1,0 +1,25 @@
+<div class="row">
+	
+	<p>
+		<h2>gallery:
+			<%= @gallery.name %>
+		</h2>
+	</p>
+
+	
+
+	<div class="row">
+		<div class="span2 gallery_action_menu">
+			<%= render :partial=>"action_menu" %>
+		</div>
+
+		<div class="span10">
+			<div class="clear"><%= will_paginate @photos %></div>
+			<%= render :partial=>"shared/photo", :collection=>@photos %>
+			<div class="clear"><%= will_paginate @photos %></div>
+		</div>
+
+	</div>
+
+</div>
+

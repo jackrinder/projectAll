@@ -1,12 +1,23 @@
 require 'spec_helper'
 
-include ApplicationHelper
+include GeneralTools
+include SignUpTools
+include IndexPageTools
 
+
+# ======================================================
+# = PAGES WHERE USERS OR THEIR INTERACTION IS EXAMINED =
+# ======================================================
 describe "User pages" do
   
 
   subject { page }
   
+  
+# ================
+# = 0)USER PROFILE PAGE =
+# ================
+
   describe "profile page" do
     let(:user) {FactoryGirl.create(:user) }
     let!(:m1) {FactoryGirl.create(:micropost, :user=>user, :content=>"Foo") }
@@ -15,7 +26,12 @@ describe "User pages" do
     before { visit user_path(user) }
     it {should have_selector("h1", :text=>user.name)}
     it {should have_selector("title", :text=>user.name)}
-    
+    # USER PROFILE PAGE
+    # VISITS USER PROFILE PAGE
+    # WRITES TWO MICROPOSTS WITH DIFFERENT CONTENT
+    # SHOULD SEE TWO MICROPOSTS
+    # WITH THE CORRECT CONTENT
+    # 
     describe "microposts" do
       it {should have_content(m1.content)}
       it {should have_content(m2.content)}
@@ -24,23 +40,29 @@ describe "User pages" do
     
   
   end
-  
+
+
+# ====================
+# = 1)USERS INDEX PAGE =
+# ====================
   describe "index" do
     
       let(:user) {FactoryGirl.create(:user)}
-      before(:all) {30.times {FactoryGirl.create(:user)}}
+      before(:all) {create_many(:user)}
       after(:all) {User.delete_all}
       
       before(:each) do
-        sign_in user
+        valid_sign_in user
         visit users_path
       end
     
       it {should have_selector("title", :text=>"All users")}
       it {should have_selector("h1", :text=>"All users")}
-    
+    # USER INDEX PAGE
+    # 1.1)CHECKS IF ALL USERNAMES ARE DISPLAYED PROPERLY IN THE FIRST PAGE
       describe "pagination" do
-        it {should have_selector('div.pagination')}
+        it {check_pagination}
+        
         
         it "should list each user" do
           User.paginate(:page=>1).each do |user|
@@ -49,7 +71,10 @@ describe "User pages" do
         end
       end
       
-      
+      # USER INDEX PAGE
+      # 
+      # 1.2)CHECKS THAT THERE IS NO DELETE LINK IN EACH USER'S IN USERS INDEX 
+      #   EXCEPT ADMIN USER WHO HAS DELETE LINK ON EVERYONE OTHER THAN HIMSELF
       describe "delete links" do
         it { should_not have_link("delete") }
         
@@ -71,6 +96,9 @@ describe "User pages" do
       
   end
 
+# ====================
+# = 2)USER SIGNUP PAGE =
+# ====================
   describe "signup page" do
     before { visit sign_up_path }
 
@@ -79,37 +107,49 @@ describe "User pages" do
 
     let(:submit) { "Create my account" }
 
+    #  USER SIGNUP PAGE
+    #  2.1) CHECKS CREATE ACTION
+    #       IT SHOULD NOT CREATE A USER WITH INVALID ATTRIBUTES
     describe "with invalid information" do
 
       it "should not create a user" do
         expect { click_button submit }.not_to change(User, :count)
       end
     end
-
-    describe "with valid information" do
-      before do
-        fill_in "Name",       :with=>"Example User"
-        fill_in "Email",       :with=>"user@example.com"
-        fill_in "Password",       :with=>"foobar"
-        fill_in "Password confirmation",       :with=>"foobar"
-      end
-
-      it "should create a user" do
-        expect { click_button submit }.to change(User, :count) .by(1)
-      end
-      
-      
-    end
     
+    
+    
+    #  USER SIGNUP PAGE
+    #  2.2)CHECKS IF AFTER INVALID SUBMISSION
+    #       THE USER IS SHOWN AN ERROR
+    #       AND IS STILL IN SIGNUP PAGE
     describe "with invalid information" do 
       let(:invalid_user) {FactoryGirl.create(:invalid_user)}
       
       describe "after submission" do 
         before {click_button submit}
         it {should have_selector("title", :text=>"Sign up")}
-        it {should have_content("error")}
+        it {should see_error_message("error")}
+        # it {should have_content("error")}
       end
     end
+
+      #  USER SIGNUP PAGE
+      #  2.2) CHECKS CREATE ACTION
+      #  IT SHOULD CREATE A USER WITH VALID ATTRIBUTES
+    describe "with valid information" do
+      before do
+        fill_in_valid_info
+      end
+
+      it "should create a user" do
+        should_create_user
+      end
+      
+      
+    end
+    
+    
     
       
       
@@ -117,17 +157,9 @@ describe "User pages" do
   end
   
   
-
-  describe "profile page" do
-    #code to make a user variable
-    let(:user) { FactoryGirl.create(:user)}
-    before { visit user_path(user) }
-
-    it { should have_selector('h1', :text=>user.name)}
-    it { should have_selector('title', :text=>user.name)}
-  end
-  
-  
+# ============================
+# = 3)USER UPDATE PROFILE PAGE =
+# ============================  
   describe "Edit " do
     let(:user) {FactoryGirl.create(:user)}
     
@@ -138,12 +170,20 @@ describe "User pages" do
       visit edit_user_path(user)
     end
     
+    #  USER UPDATE PROFILE PAGE
+    #  3.1) WHO HAS SIGNED 
+    #       AND HAS VISITED UPDATE PROFILE PAGE
+    # =>    SHOULD SEE A LINK NAMED CHANGE WHICH REDIRECTS TO GRAVATAR PAGE
       describe "page" do
         it { should have_selector("h1", :text=>"Update your profile")}
         it { should have_selector("title", :text=>"Edit user")}
-        it {should have_link("change", :href=>"http://gravatar.com/emails")}
+        it { should have_link("change", :href=>"http://gravatar.com/emails")}
       end
     
+      #   USER UPDATE PROFILE PAGE
+      #   3.2) IS SIGNED IN AND VISITED UPDATE PROFILE PAGE
+      # => AND SUBMITS INVALID INFORMATION
+      #     SHOULD SEE AN ERROR
       describe "with invalid information" do
         before {click_button "Save changes"}
         
@@ -151,6 +191,11 @@ describe "User pages" do
       end
       
       
+      #   USER UPDATE PROFILE PAGE
+      #   3.3) IS SIGNED IN AND VISITED UPDATE PROFILE PAGE
+      #   AND SUBMITS VALID INFORMATION
+      #   SHOULD SEE AN SUCCESS NOTICE
+      # => AND HIS INFOS MUST BE CHANGED TO THE NEW ONES
       describe "with valid information" do
         let(:new_name) {"New Name"}
         let(:new_email) {"new@example.com"}
@@ -171,5 +216,10 @@ describe "User pages" do
         specify { user.reload.email.should == new_email}
       end
     end
+    
+    
+    
+    
+    
   
 end

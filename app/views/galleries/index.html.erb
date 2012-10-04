@@ -1,0 +1,18 @@
+<% provide(:title, "photo-gallery") %>
+<div class="row">
+	<h1>Photo-Gallery</h1>
+
+	<h2>List of Galleries</h2>
+
+	<div class="row">
+		<div class="span2">
+			
+			<%= render :partial=>"g_action_menu" %>
+			
+		</div>
+		<div class="span10">
+			<%= render :partial=>"gallery", :collection=>@galleries %>
+
+		</div>
+	</div>
+</div>

@@ -24,6 +24,7 @@ class PagesController < ApplicationController
   
   def photo_gallery
     @title="Photo-Gallery"
+    @galleries=Gallery.all
   end
   
   def notepad

@@ -1,0 +1,16 @@
+<div class="photo">
+<div class="name"><%= photo.name %></div>
+
+<!-- <%= image_tag photo.image_url(:thumb) if photo.image? %> -->
+<!-- The following code works both for image_url and image_remote_url -->
+	<% if photo.image? %>
+			<div><%= image_tag photo.image_url(:thumb) %></div>
+		<% else %>
+			<div class="image_placeholder"></div>
+		<% end %>
+		
+		<section class="actions">
+			<span><%= link_to "edit", edit_photo_path(photo) %></span>
+			<span><%= link_to "remove", photo, :confirm=>'Are you sure?', :method=>:delete %></span>
+		</section>
+</div>

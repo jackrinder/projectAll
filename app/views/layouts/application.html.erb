@@ -12,6 +12,8 @@
 
 	<%= render 'layouts/header' %>
 	<div class="container">
+		<!-- flash is a special variable in rails  -->
+		<!-- flash lasts only until there is a second redirection -->
 		<% flash.each do |key,value| %>
 		<!-- <div class="alert alert-<%= key %>"><%= value %></div> -->
 		<!-- Alternative prettier way for the above code -->

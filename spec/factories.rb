@@ -3,11 +3,15 @@
 FactoryGirl.define do
   
   factory :user do
+    # with sequence each name is different
+    # so that name uniqueness validation is not triggered
     sequence(:name) { |n| "Person_ar#{n}" }
     sequence(:email) { |n| "person_ar_#{n}@example.com" }
     password "foobar"
     password_confirmation "foobar"
     
+    # creates a single user admin who inherits from plain user
+    # all but admin boolean which is true in his case
     factory :admin do
       admin true
     end

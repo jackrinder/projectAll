@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="span6 offset3">
+<%= form_for @photo, :html => {:multipart => true} do |f| %>
+	<%= f.hidden_field :gallery_id %>
+	<p>
+		<%= f.label :name %><br />
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.file_field :image %>
+	</p>
+	<p>
+		<%= f.label :remote_image_url, "or image URL" %><br />
+		<%= f.text_field :remote_image_url %>
+	</p>
+	<p><%= f.submit "Add photo", :class=>"btn btn-large btn-primary" %></p>
+	<% end %>
+	</div>
+	<div class="span6"></div>
+</div>

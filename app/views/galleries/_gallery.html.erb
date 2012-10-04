@@ -1,0 +1,13 @@
+
+
+<div class="photo">
+    <div class="name"><%= gallery.name %></div>
+	<div class="actions">number of pictures :<%= gallery.photos.count %></div>
+	<section class="actions">
+		<span><%= link_to "Show", gallery_path(gallery) %></span>
+		<span><%= link_to "Edit", edit_gallery_path(gallery)%></span>
+		<span><%= link_to "Destroy", gallery, :confirm => 'Are you sure?', :method => :delete %></span>
+	</section>
+	
+ 
+</div>

@@ -10,7 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120922091938) do
+ActiveRecord::Schema.define(:version => 20120927172831) do
+
+  create_table "galleries", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -20,6 +26,16 @@ ActiveRecord::Schema.define(:version => 20120922091938) do
   end
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
+
+  create_table "photos", :force => true do |t|
+    t.string   "name"
+    t.string   "image"
+    t.string   "remote_image_url"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "gallery_id"
+    t.string   "xls_file"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

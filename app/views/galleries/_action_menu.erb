@@ -1,0 +1,6 @@
+<ul class="nav nav-list">
+	
+	<%= add_menu_item("Add a Photo",new_photo_path(:gallery_id=>@gallery.id)) %>
+	<%= add_menu_item("Remove Gallery",@gallery,:confirm=>"Are you sure?",:method=>:delete) %>
+	<%= add_menu_item("View Galleries", galleries_path) %>
+</ul>
